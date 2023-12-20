@@ -1,8 +1,6 @@
 import pickle
 import torch
-from torch.utils.data import DataLoader
 
-import src.constants as constants
 from src.models.lstm_dataset import LstmSequenceDataset
     
 def get_inputs_tensor(data):

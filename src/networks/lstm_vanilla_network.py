@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 
 import src.constants as constants
-from src.models.token_dictionary import TokenDictionary
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
@@ -10,11 +9,11 @@ device = torch.device("cuda" if use_cuda else "cpu")
 
 class LstmVanillaNetwork(nn.Module):
 
-    def __init__(self, token_dictionary: TokenDictionary):
+    def __init__(self, tokenizer):
         super(LstmVanillaNetwork, self).__init__()
 
         self.embeddings = nn.Embedding(
-            num_embeddings=token_dictionary.token_count,
+            num_embeddings=tokenizer.vocab_size,
             embedding_dim=constants.EMBED_DIMENSION,
             max_norm=constants.EMBED_MAX_NORM,
             padding_idx=constants.PADDING_IDX
@@ -25,7 +24,7 @@ class LstmVanillaNetwork(nn.Module):
 
         self.linear = nn.Linear(
             in_features=constants.LSTM_HIDDEN_SIZE,
-            out_features=token_dictionary.token_count,
+            out_features=tokenizer.vocab_size,
         )
 
     def get_initial_hidden_context(self):

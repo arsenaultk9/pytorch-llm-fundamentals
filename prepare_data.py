@@ -1,5 +1,6 @@
 import pickle
 
+import src.constants as constants
 from datasets import load_dataset
 from transformers import AutoTokenizer
 
@@ -9,7 +10,7 @@ print(dataset)
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
 def encode(documents):
-    return tokenizer(documents['pr-article'], truncation=True, padding="max_length")
+    return tokenizer(documents['pr-article'], padding=True, truncation=True, max_length=constants.SEQUENCE_LENGTH)
 
 train = encode(dataset['train'][0:100])
 validation = encode(dataset['validation'][0:15])

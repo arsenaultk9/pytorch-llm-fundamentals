@@ -11,9 +11,9 @@ tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 def encode(documents):
     return tokenizer(documents['pr-article'], truncation=True, padding="max_length")
 
-train = encode(dataset['train'])
-validation = encode(dataset['validation'])
-test = encode(dataset['test'])
+train = encode(dataset['train'][0:100])
+validation = encode(dataset['validation'][0:15])
+test = encode(dataset['test'][0:20])
 
 data = {
     "train": train,

@@ -26,8 +26,14 @@ def get_data_set(data):
         x = input[0:-1]
         y = input[1:]
         
-        Xs.append(x)
-        Ys.append(y)
+        for cur_pos in range(0, len(x) - constants.WINDOW_SLIDE_LENGTH + 1, constants.WINDOW_SLIDE_RANGE):
+            end_pos = cur_pos + constants.WINDOW_SLIDE_LENGTH
+            
+            x_window_slide = x[cur_pos:end_pos]
+            y_window_slide = y[cur_pos:end_pos]
+        
+            Xs.append(x_window_slide)
+            Ys.append(y_window_slide)
         
     Xs = torch.Tensor(Xs)
     Ys = torch.Tensor(Ys)

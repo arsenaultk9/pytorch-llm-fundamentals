@@ -1,0 +1,5 @@
+datasets==2.15.0
+transformers==4.36.1
+torch==1.13.1+computecanada
+tensorboard==2.15.1
+wordcloud==1.9.3

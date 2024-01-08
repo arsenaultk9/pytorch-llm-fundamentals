@@ -10,6 +10,8 @@ from src.networks.lstm_vanilla_network import LstmVanillaNetwork
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 
+print(f'device: {device}')
+
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 train_dataset, valid_dataset, test_dataset = get_data()
 

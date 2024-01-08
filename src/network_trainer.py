@@ -1,3 +1,4 @@
+import datetime
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -81,7 +82,8 @@ class NetworkTrainer:
             if batch_idx % constants.BATCH_LOG_INTERVAL == 0 and batch_idx != 0:
                 current_item = batch_idx * len(x)
 
-                print('Train Epoch: {} [{}/{} ({:.0f}%)]\t\tAverage Loss: {:.6f}\tAverage Right Predictions: {:.4f}'.format(
+                print('{} -> Train Epoch: {} [{}/{} ({:.0f}%)]\t\tAverage Loss: {:.6f}\tAverage Right Predictions: {:.4f}'.format(
+                    datetime.datetime.now(),
                     f"{epoch:03d}",
                     f"{current_item:04d}",
                     len(self.train_data_loader.dataset),
@@ -121,7 +123,8 @@ class NetworkTrainer:
             if batch_idx % constants.VALID_PREDICTION_SAMPLE_RATE == 0 and batch_idx != 0:
                 current_item = batch_idx * len(x)
 
-                print('Valid Epoch: {} [{}/{} ({:.0f}%)]\tAverage Loss: {:.6f}\tAverage Right Predictions: {:.4f}'.format(
+                print('{} -> Valid Epoch: {} [{}/{} ({:.0f}%)]\tAverage Loss: {:.6f}\tAverage Right Predictions: {:.4f}'.format(
+                    datetime.datetime.now(),
                     f"{epoch:03d}",
                     f"{current_item:04d}",
                     len(self.valid_data_loader.dataset),
@@ -169,7 +172,8 @@ class NetworkTrainer:
 
         current_item = int(len(self.test_data_loader.dataset) / constants.BATCH_SIZE)
 
-        print('Test [{}/{}]\tAverage Loss: {:.6f}\tAverage Right Predictions: {:.4f}'.format(
+        print('{} -> Test [{}/{}]\tAverage Loss: {:.6f}\tAverage Right Predictions: {:.4f}'.format(
+            datetime.datetime.now(),
             len(self.test_data_loader.dataset),
             len(self.test_data_loader.dataset),
             results_aggregator.get_average_loss(current_item), 

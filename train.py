@@ -1,6 +1,6 @@
 import torch
 from torch.utils.data import DataLoader
-from transformers import AutoTokenizer
+from transformers import GPT2Tokenizer
 
 import src.constants as constants
 from src.lstm_data_loader import get_data
@@ -12,7 +12,7 @@ device = torch.device("cuda" if use_cuda else "cpu")
 
 print(f'device: {device}')
 
-tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 train_dataset, valid_dataset, test_dataset = get_data()
 
 train_data_loader = DataLoader(train_dataset, constants.BATCH_SIZE, constants.SHUFFLE_DATA)

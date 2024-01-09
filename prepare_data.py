@@ -2,19 +2,19 @@ import pickle
 
 import src.constants as constants
 from datasets import load_dataset
-from transformers import AutoTokenizer
+from transformers import GPT2Tokenizer
 
 dataset = load_dataset("ronaldahmed/scitechnews")
 print(dataset)
 
-tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 
 def encode(documents):
-    return tokenizer(documents['pr-article'], padding=True, truncation=True, max_length=constants.SEQUENCE_LENGTH)
+    return tokenizer(documents['pr-article'])
 
-train = encode(dataset['train'][0:1000])
-validation = encode(dataset['validation'][0:150])
-test = encode(dataset['test'][0:200])
+train = encode(dataset['train'][0:100])
+validation = encode(dataset['validation'][0:15])
+test = encode(dataset['test'][0:20])
 
 data = {
     "train": train,

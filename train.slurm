@@ -13,4 +13,4 @@ avail_wheels "torch*"
 
 pip install -r valeria_requirements.txt
 pip freeze
-python train.py
+python -u train.py
